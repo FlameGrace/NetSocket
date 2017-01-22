@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09607F28F17AA5DEA1B9B16F /* libPods-NetSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE791F08CA08057E744DC56A /* libPods-NetSocket.a */; };
+		86A523201E3448B800FCEECF /* CocoaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A5231F1E3448B800FCEECF /* CocoaViewController.m */; };
 		86EF93B71E33462400FA9DBA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EF93B61E33462400FA9DBA /* main.m */; };
 		86EF93BA1E33462500FA9DBA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EF93B91E33462500FA9DBA /* AppDelegate.m */; };
 		86EF93BD1E33462500FA9DBA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EF93BC1E33462500FA9DBA /* ViewController.m */; };
@@ -15,6 +17,9 @@
 		86EF93C51E33462600FA9DBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86EF93C31E33462600FA9DBA /* LaunchScreen.storyboard */; };
 		86EF93D01E33462600FA9DBA /* NetSocketTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EF93CF1E33462600FA9DBA /* NetSocketTests.m */; };
 		86EF93DB1E33462600FA9DBA /* NetSocketUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EF93DA1E33462600FA9DBA /* NetSocketUITests.m */; };
+		86EF93EA1E33464200FA9DBA /* LMSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EF93E91E33464200FA9DBA /* LMSocket.m */; };
+		86EF93F41E33476E00FA9DBA /* LMBlockSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EF93F31E33476E00FA9DBA /* LMBlockSocket.m */; };
+		86EF93F71E3360FB00FA9DBA /* BlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EF93F61E3360FB00FA9DBA /* BlockViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86A5231E1E3448B800FCEECF /* CocoaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaViewController.h; sourceTree = "<group>"; };
+		86A5231F1E3448B800FCEECF /* CocoaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaViewController.m; sourceTree = "<group>"; };
 		86EF93B21E33462400FA9DBA /* NetSocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetSocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86EF93B61E33462400FA9DBA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		86EF93B81E33462500FA9DBA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +58,17 @@
 		86EF93D61E33462600FA9DBA /* NetSocketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetSocketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86EF93DA1E33462600FA9DBA /* NetSocketUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetSocketUITests.m; sourceTree = "<group>"; };
 		86EF93DC1E33462600FA9DBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86EF93E81E33464200FA9DBA /* LMSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMSocket.h; sourceTree = "<group>"; };
+		86EF93E91E33464200FA9DBA /* LMSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMSocket.m; sourceTree = "<group>"; };
+		86EF93EC1E3346F700FA9DBA /* LMSocketProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMSocketProtocol.h; sourceTree = "<group>"; };
+		86EF93EF1E33470A00FA9DBA /* LMSocketDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMSocketDelegate.h; sourceTree = "<group>"; };
+		86EF93F21E33476E00FA9DBA /* LMBlockSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMBlockSocket.h; sourceTree = "<group>"; };
+		86EF93F31E33476E00FA9DBA /* LMBlockSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMBlockSocket.m; sourceTree = "<group>"; };
+		86EF93F51E3360FB00FA9DBA /* BlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockViewController.h; sourceTree = "<group>"; };
+		86EF93F61E3360FB00FA9DBA /* BlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockViewController.m; sourceTree = "<group>"; };
+		A9640AD486E133043EC73EC1 /* Pods-NetSocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetSocket.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetSocket/Pods-NetSocket.debug.xcconfig"; sourceTree = "<group>"; };
+		AB6432C37E1FE9E658BD54F5 /* Pods-NetSocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetSocket.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetSocket/Pods-NetSocket.release.xcconfig"; sourceTree = "<group>"; };
+		DE791F08CA08057E744DC56A /* libPods-NetSocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NetSocket.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09607F28F17AA5DEA1B9B16F /* libPods-NetSocket.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36B3B466B1631EBAB8A7C749 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A9640AD486E133043EC73EC1 /* Pods-NetSocket.debug.xcconfig */,
+				AB6432C37E1FE9E658BD54F5 /* Pods-NetSocket.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		86EF93A91E33462400FA9DBA = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +113,8 @@
 				86EF93CE1E33462600FA9DBA /* NetSocketTests */,
 				86EF93D91E33462600FA9DBA /* NetSocketUITests */,
 				86EF93B31E33462400FA9DBA /* Products */,
+				36B3B466B1631EBAB8A7C749 /* Pods */,
+				C83FBB7FB19D04547DDE53A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +131,15 @@
 		86EF93B41E33462400FA9DBA /* NetSocket */ = {
 			isa = PBXGroup;
 			children = (
+				86EF93EB1E33464900FA9DBA /* Socket */,
 				86EF93B81E33462500FA9DBA /* AppDelegate.h */,
 				86EF93B91E33462500FA9DBA /* AppDelegate.m */,
 				86EF93BB1E33462500FA9DBA /* ViewController.h */,
 				86EF93BC1E33462500FA9DBA /* ViewController.m */,
+				86EF93F51E3360FB00FA9DBA /* BlockViewController.h */,
+				86EF93F61E3360FB00FA9DBA /* BlockViewController.m */,
+				86A5231E1E3448B800FCEECF /* CocoaViewController.h */,
+				86A5231F1E3448B800FCEECF /* CocoaViewController.m */,
 				86EF93BE1E33462500FA9DBA /* Main.storyboard */,
 				86EF93C11E33462500FA9DBA /* Assets.xcassets */,
 				86EF93C31E33462600FA9DBA /* LaunchScreen.storyboard */,
@@ -140,6 +175,27 @@
 			path = NetSocketUITests;
 			sourceTree = "<group>";
 		};
+		86EF93EB1E33464900FA9DBA /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				86EF93E81E33464200FA9DBA /* LMSocket.h */,
+				86EF93E91E33464200FA9DBA /* LMSocket.m */,
+				86EF93EC1E3346F700FA9DBA /* LMSocketProtocol.h */,
+				86EF93EF1E33470A00FA9DBA /* LMSocketDelegate.h */,
+				86EF93F21E33476E00FA9DBA /* LMBlockSocket.h */,
+				86EF93F31E33476E00FA9DBA /* LMBlockSocket.m */,
+			);
+			name = Socket;
+			sourceTree = "<group>";
+		};
+		C83FBB7FB19D04547DDE53A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE791F08CA08057E744DC56A /* libPods-NetSocket.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86EF93DF1E33462600FA9DBA /* Build configuration list for PBXNativeTarget "NetSocket" */;
 			buildPhases = (
+				2A73C5A4160D5A1BF0F3B7A8 /* [CP] Check Pods Manifest.lock */,
 				86EF93AE1E33462400FA9DBA /* Sources */,
 				86EF93AF1E33462400FA9DBA /* Frameworks */,
 				86EF93B01E33462400FA9DBA /* Resources */,
+				76F46CF7AB72025D65C45E3E /* [CP] Embed Pods Frameworks */,
+				0E5C13080342EC10CA752AC1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -271,14 +330,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0E5C13080342EC10CA752AC1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NetSocket/Pods-NetSocket-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2A73C5A4160D5A1BF0F3B7A8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		76F46CF7AB72025D65C45E3E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NetSocket/Pods-NetSocket-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		86EF93AE1E33462400FA9DBA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86EF93F71E3360FB00FA9DBA /* BlockViewController.m in Sources */,
+				86A523201E3448B800FCEECF /* CocoaViewController.m in Sources */,
 				86EF93BD1E33462500FA9DBA /* ViewController.m in Sources */,
 				86EF93BA1E33462500FA9DBA /* AppDelegate.m in Sources */,
+				86EF93F41E33476E00FA9DBA /* LMBlockSocket.m in Sources */,
 				86EF93B71E33462400FA9DBA /* main.m in Sources */,
+				86EF93EA1E33464200FA9DBA /* LMSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +534,7 @@
 		};
 		86EF93E01E33462600FA9DBA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9640AD486E133043EC73EC1 /* Pods-NetSocket.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PK25G5QCH4;
@@ -435,6 +547,7 @@
 		};
 		86EF93E11E33462600FA9DBA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB6432C37E1FE9E658BD54F5 /* Pods-NetSocket.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PK25G5QCH4;
@@ -514,6 +627,7 @@
 				86EF93E11E33462600FA9DBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		86EF93E21E33462600FA9DBA /* Build configuration list for PBXNativeTarget "NetSocketTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +636,7 @@
 				86EF93E41E33462600FA9DBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		86EF93E51E33462600FA9DBA /* Build configuration list for PBXNativeTarget "NetSocketUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +645,7 @@
 				86EF93E71E33462600FA9DBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

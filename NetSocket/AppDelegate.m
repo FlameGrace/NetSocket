@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  NetSocket
 //
-//  Created by 李嘉军 on 2017/1/21.
+//  Created by Flame Grace on 2017/1/21.
 //  Copyright © 2017年 hello. All rights reserved.
 //
 

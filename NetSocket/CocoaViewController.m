@@ -6,13 +6,14 @@
 //  Copyright © 2017年 hello. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "LMSocket.h"
+#import "CocoaViewController.h"
+#import "LMBlockSocket.h"
+#import <CocoaAsyncSocket/GCDAsyncSocket.h>
 
-#define TestPort 8004
+#define TestPort 8008
 
 
-@interface ViewController ()<LMSocketDelegate>
+@interface CocoaViewController ()<LMSocketDelegate,GCDAsyncSocketDelegate>
 
 @property (strong, nonatomic) UIButton *connectButton;
 
@@ -22,11 +23,11 @@
 
 @property (strong, nonatomic) UIButton *closeButton;
 
-@property (strong, nonatomic) LMSocket *server;
+@property (strong, nonatomic) LMBlockSocket *server;
 
-@property (strong, nonatomic) LMSocket *client1;
+@property (strong, nonatomic) GCDAsyncSocket *client1;
 
-@property (strong, nonatomic) LMSocket *client2;
+@property (strong, nonatomic) GCDAsyncSocket *client2;
 
 @property (strong, nonatomic)  NSMutableArray *clients;
 
@@ -34,7 +35,7 @@
 
 @end
 
-@implementation ViewController
+@implementation CocoaViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,18 +53,55 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSString *)nameForSocket:(GCDAsyncSocket *)sock
+{
+    NSString *name = @"";
+    if([sock isEqual:self.client1])
+    {
+        name = @"客户端1";
+    }
+    else
+    {
+        name = @"客户端2";
+    }
+    
+    return name;
+}
 
-- (void)socketDidConnect:(LMSocket *)socket
+
+- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+{
+    NSString *st = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"%@接收到数据：%@",[self nameForSocket:sock],st);
+    
+}
+
+- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
+{
+    NSLog(@"%@发送数据",[self nameForSocket:sock]);
+}
+- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(nullable NSError *)err
+{
+    NSLog(@"%@失去链接",[self nameForSocket:sock]);
+}
+
+- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port
+{
+    NSLog(@"%@连接上",[self nameForSocket:sock]);
+}
+
+
+- (void)socketDidConnect:(LMBlockSocket *)socket
 {
     NSLog(@"%@连接上",socket.name);
 }
 
-- (void)socketDidDisconnect:(LMSocket *)socket
+- (void)socketDidDisconnect:(LMBlockSocket *)socket
 {
     NSLog(@"%@失去链接",socket.name);
 }
 
-- (void)socket:(LMSocket *)socket recieveData:(NSData *)data
+- (void)socket:(LMBlockSocket *)socket recieveData:(NSData *)data
 {
     
     NSString *st = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
@@ -71,12 +109,12 @@
     
 }
 
-- (void)socketDidSendData:(LMSocket *)socket
+- (void)socketDidSendData:(LMBlockSocket *)socket
 {
     NSLog(@"%@发送数据",socket.name);
 }
 
-- (void)socket:(LMSocket *)socket didAcceptNewSocket:(LMSocket *)newSocket
+- (void)socket:(LMBlockSocket *)socket didAcceptNewSocket:(LMBlockSocket *)newSocket
 {
     self.nowClient ++;
     newSocket.name = [NSString stringWithFormat:@"新连接%ld",(long)self.nowClient];
@@ -91,7 +129,7 @@
 {
     if(!self.server)
     {
-        self.server = [[LMSocket alloc]init];
+        self.server = [[LMBlockSocket alloc]init];
         self.server.delegate = self;
         self.server.name = @"服务器";
     }
@@ -107,43 +145,41 @@
     
     if(!self.client1)
     {
-        self.client1 = [[LMSocket alloc]init];
-        self.client1.delegate = self;
-        self.client1.name = @"客户端1";
+        dispatch_queue_t queue1 =  dispatch_queue_create("client1", DISPATCH_QUEUE_PRIORITY_DEFAULT);
+        self.client1 = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:queue1];;
     }
     
-    if(![self.client1 connectHost:@"127.0.0.1" port:TestPort])
+    if(![self.client1 connectToHost:@"127.0.0.1" onPort:TestPort error:&error])
     {
-        NSLog(@"客户端1链接失败");
+        NSLog(@"客户端1链接失败%@",error);
     }
     else
     {
-        [self.client1 receiveData];
+        [self.client1 readDataWithTimeout:-1 tag:0];
     }
     
     if(!self.client2)
     {
-        self.client2 = [[LMSocket alloc]init];
-        self.client2.delegate = self;
-        self.client2.name = @"客户端2";
+        dispatch_queue_t queue2 =  dispatch_queue_create("client1", DISPATCH_QUEUE_PRIORITY_DEFAULT);
+        self.client2 = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:queue2];
     }
     
     
-    if(![self.client2 connectHost:@"127.0.0.1" port:TestPort])
+    if(![self.client2 connectToHost:@"127.0.0.1" onPort:TestPort error:nil])
     {
-        NSLog(@"客户端2链接失败");
+        NSLog(@"客户端2链接失败%@",error);
     }
     else
     {
-        [self.client2 receiveData];
+        [self.client2 readDataWithTimeout:-1 tag:0];
     }
-
+    
 }
 
 - (void)btnClickServerSend
 {
     NSTimeInterval date = [[NSDate date]timeIntervalSince1970];
-    for (LMSocket *socket in self.clients) {
+    for (LMBlockSocket *socket in self.clients) {
         
         NSData *data = [[NSString stringWithFormat:@"服务器通过%@发送数据了：%f",socket.name,date] dataUsingEncoding:NSUTF8StringEncoding];
         [socket sendData:data];
@@ -153,17 +189,17 @@
 - (void)btnClickClientSend
 {
     NSTimeInterval date = [[NSDate date]timeIntervalSince1970];
-    NSData *data = [[NSString stringWithFormat:@"%@发送数据了：%f",self.client1.name,date] dataUsingEncoding:NSUTF8StringEncoding];
-    [self.client1 sendData:data];
+    NSData *data = [[NSString stringWithFormat:@"客户端1发送数据了：%f",date] dataUsingEncoding:NSUTF8StringEncoding];
+    [self.client1 writeData:data withTimeout:-1 tag:0];
     
-    NSData *data2 = [[NSString stringWithFormat:@"%@发送数据了：%f",self.client2.name,date] dataUsingEncoding:NSUTF8StringEncoding];
-    [self.client2 sendData:data2];
+    NSData *data2 = [[NSString stringWithFormat:@"客户端2发送数据了：%f",date] dataUsingEncoding:NSUTF8StringEncoding];
+    [self.client2 writeData:data2 withTimeout:-1 tag:0];
 }
 
 - (void)btnClickClose
 {
-    [self.client1 close];
-    [self.client2 close];
+    [self.client1 disconnect];
+    [self.client2 disconnect];
     [self.server close];
     self.clients = nil;
     self.client1 = nil;

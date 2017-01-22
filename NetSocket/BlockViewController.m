@@ -6,13 +6,13 @@
 //  Copyright © 2017年 hello. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "LMSocket.h"
+#import "BlockViewController.h"
+#import "LMBlockSocket.h"
 
-#define TestPort 8004
+#define TestPort 8005
 
 
-@interface ViewController ()<LMSocketDelegate>
+@interface BlockViewController ()<LMSocketDelegate>
 
 @property (strong, nonatomic) UIButton *connectButton;
 
@@ -22,11 +22,11 @@
 
 @property (strong, nonatomic) UIButton *closeButton;
 
-@property (strong, nonatomic) LMSocket *server;
+@property (strong, nonatomic) LMBlockSocket *server;
 
-@property (strong, nonatomic) LMSocket *client1;
+@property (strong, nonatomic) LMBlockSocket *client1;
 
-@property (strong, nonatomic) LMSocket *client2;
+@property (strong, nonatomic) LMBlockSocket *client2;
 
 @property (strong, nonatomic)  NSMutableArray *clients;
 
@@ -34,7 +34,7 @@
 
 @end
 
-@implementation ViewController
+@implementation BlockViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,17 +53,17 @@
 }
 
 
-- (void)socketDidConnect:(LMSocket *)socket
+- (void)socketDidConnect:(LMBlockSocket *)socket
 {
     NSLog(@"%@连接上",socket.name);
 }
 
-- (void)socketDidDisconnect:(LMSocket *)socket
+- (void)socketDidDisconnect:(LMBlockSocket *)socket
 {
     NSLog(@"%@失去链接",socket.name);
 }
 
-- (void)socket:(LMSocket *)socket recieveData:(NSData *)data
+- (void)socket:(LMBlockSocket *)socket recieveData:(NSData *)data
 {
     
     NSString *st = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
@@ -71,12 +71,12 @@
     
 }
 
-- (void)socketDidSendData:(LMSocket *)socket
+- (void)socketDidSendData:(LMBlockSocket *)socket
 {
     NSLog(@"%@发送数据",socket.name);
 }
 
-- (void)socket:(LMSocket *)socket didAcceptNewSocket:(LMSocket *)newSocket
+- (void)socket:(LMBlockSocket *)socket didAcceptNewSocket:(LMBlockSocket *)newSocket
 {
     self.nowClient ++;
     newSocket.name = [NSString stringWithFormat:@"新连接%ld",(long)self.nowClient];
@@ -91,7 +91,7 @@
 {
     if(!self.server)
     {
-        self.server = [[LMSocket alloc]init];
+        self.server = [[LMBlockSocket alloc]init];
         self.server.delegate = self;
         self.server.name = @"服务器";
     }
@@ -107,7 +107,7 @@
     
     if(!self.client1)
     {
-        self.client1 = [[LMSocket alloc]init];
+        self.client1 = [[LMBlockSocket alloc]init];
         self.client1.delegate = self;
         self.client1.name = @"客户端1";
     }
@@ -123,7 +123,7 @@
     
     if(!self.client2)
     {
-        self.client2 = [[LMSocket alloc]init];
+        self.client2 = [[LMBlockSocket alloc]init];
         self.client2.delegate = self;
         self.client2.name = @"客户端2";
     }
@@ -143,7 +143,7 @@
 - (void)btnClickServerSend
 {
     NSTimeInterval date = [[NSDate date]timeIntervalSince1970];
-    for (LMSocket *socket in self.clients) {
+    for (LMBlockSocket *socket in self.clients) {
         
         NSData *data = [[NSString stringWithFormat:@"服务器通过%@发送数据了：%f",socket.name,date] dataUsingEncoding:NSUTF8StringEncoding];
         [socket sendData:data];

@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ViewController.h
 //  NetSocket
 //
 //  Created by Flame Grace on 2017/1/21.
@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+/**
+ 测试非阻塞式Socket服务器与客户端通讯
+ */
+@interface BlockViewController : UIViewController
 
 
 @end
